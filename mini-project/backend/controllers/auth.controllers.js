@@ -4,7 +4,8 @@ import User from "../models/user.model.js";
 
 export const signUp = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    let { name, email, password } = req.body;
+    email = email.trim().toLowerCase();
 
     const existEmail = await User.findOne({ email });
     if (existEmail) {
@@ -41,9 +42,14 @@ export const signUp = async (req, res) => {
 
 export const Login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    console.log("Full req.body:", req.body);
+    let { email, password } = req.body;
 
-    const foundUser = await User.findOne({ email });
+    email = email.trim().toLowerCase();
+    console.log("Email after trim:", email);
+
+   const foundUser = await User.findOne({ email });
+    console.log("User found:", foundUser);
     if (!foundUser) {
       return res.status(400).json({ message: "email does not exist" });
     }
