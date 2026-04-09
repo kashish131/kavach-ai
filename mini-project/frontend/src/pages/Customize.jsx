@@ -10,6 +10,8 @@ import image7 from '../assets/image7.jpeg'
 import { RiImageAddFill } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import { userDataContext } from '../context/UserContext';
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 
 function Customize() {
   const { serverUrl, userData, setUserData, backendImage, setBackendImage, frontendImage, setFrontendImage, selectedImage, setSelectedImage } = React.useContext(userDataContext);
@@ -23,6 +25,7 @@ function Customize() {
   }
   return (
     <div className='w-full h-[100vh] bg-gradient-to-t from-[black] to-[#030353]  flex justify-center items-center flex-col p-[20px]'>
+      <IoMdArrowRoundBack className='absolute top-[30px] left-[30px] text-white cursor-pointer w-[25px] h-[25px]' onClick={()=>navigate("/")}/>
       <h1 className='text-white mb-[40px] text-[30px] text-center'>Select your <span className='text-blue-200'>Assistant Image</span></h1>
       <div className='w-full max-w-[900px] flex justify-center items-center flex-wrap gap-[15px]'>
         <Card image={image1} />
